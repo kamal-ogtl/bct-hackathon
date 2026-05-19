@@ -1,0 +1,38 @@
+services:
+  task_a:
+    build:
+      context: .
+      dockerfile: task_a/Dockerfile
+    ports:
+      - "8100:8000"
+    env_file:
+      - .env
+    environment:
+      - CHROMA_DB_PATH=/app/data/chroma_db
+      - PROCESSED_DATA_DIR=/app/data/processed
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  task_b:
+    build:
+      context: .
+      dockerfile: task_b/Dockerfile
+    ports:
+      - "8102:8001"
+    env_file:
+      - .env
+    environment:
+      - CHROMA_DB_PATH=/app/data/chroma_db
+      - PROCESSED_DATA_DIR=/app/data/processed
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
