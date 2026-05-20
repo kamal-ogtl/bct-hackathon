@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: bct-task-a
+    runtime: docker
+    dockerfilePath: ./task_a/Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX_NAME
+        value: bct-hackathon
+      - key: PROCESSED_DATA_DIR
+        value: /app/data/processed
+
+  - type: web
+    name: bct-task-b
+    runtime: docker
+    dockerfilePath: ./task_b/Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX_NAME
+        value: bct-hackathon
+      - key: PROCESSED_DATA_DIR
+        value: /app/data/processed

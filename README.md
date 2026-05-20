@@ -79,6 +79,40 @@ Both services start automatically:
 
 ---
 
+## Cloud Deploy (Render + Pinecone)
+
+For live judging without local setup:
+
+### 1. Create Pinecone index
+
+Sign up at [pinecone.io](https://www.pinecone.io) (free tier). Grab your API key — the index is created automatically on first startup.
+
+### 2. Ingest data into Pinecone
+
+```bash
+# Set PINECONE_API_KEY in .env, then run the same ingest script
+PINECONE_API_KEY=your_key python -m src.utils.ingest_data
+```
+
+### 3. Deploy to Render
+
+```bash
+# Push repo to GitHub, then connect it in Render dashboard
+# render.yaml is already configured for both services
+```
+
+Set these environment variables in the Render dashboard for each service:
+
+| Variable | Value |
+|----------|-------|
+| `OPENAI_API_KEY` | Your OpenAI key |
+| `PINECONE_API_KEY` | Your Pinecone key |
+| `PINECONE_INDEX_NAME` | `bct-hackathon` |
+
+The vector backend switches automatically — `PINECONE_API_KEY` present → Pinecone, absent → ChromaDB. Docker and local workflows are unchanged.
+
+---
+
 ## API Reference
 
 ### Task A — Generate Review

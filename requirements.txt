@@ -4,6 +4,8 @@ langchain
 langchain-openai
 langgraph
 chromadb
+pinecone
+openai
 pydantic
 pydantic-settings
 python-dotenv
