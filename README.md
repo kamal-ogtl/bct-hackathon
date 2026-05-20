@@ -4,6 +4,15 @@ Submission for the **Data & AI Summit Hackathon 3.0** — DSN × BCT LLM Agent C
 
 Two containerized FastAPI services that model user behaviour from Yelp review history and generate personalized reviews and recommendations.
 
+## Live Demo
+
+| Service | Base URL | Swagger UI |
+|---------|----------|------------|
+| Task A — Review Generation | https://bct-task-a-52ol.onrender.com | [/docs](https://bct-task-a-52ol.onrender.com/docs) |
+| Task B — Recommendations | https://bct-task-b.onrender.com | [/docs](https://bct-task-b.onrender.com/docs) |
+
+> Free tier may spin down after inactivity — first request takes ~30s to wake up.
+
 ---
 
 ## Architecture
